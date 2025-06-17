@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-const host = "https://fakestoreurl.com";
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+const host = 'https://fakestoreapi.com';
 
-@Injectable({providedIn: "root"})
+@Injectable({ providedIn: 'root' })
 export class ProductService {
   private http = inject(HttpClient);
   private url = `${host}/products`;
