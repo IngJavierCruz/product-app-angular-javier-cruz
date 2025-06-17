@@ -8,14 +8,6 @@ import { ProductService } from './core/services/product.service';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App implements OnInit {
-  private productService = inject(ProductService);
+export class App {
   protected title = 'product-app-angular-javier-cruz';
-
-  constructor() {}
-
-  ngOnInit() {
-    // this.productService.getAll()
-    // .subscribe(x => console.log(x))
-  }
 }
