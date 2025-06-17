@@ -1,1 +1,15 @@
+<mat-toolbar class="toolbar">
+  <span>Exámen de Javier</span>
+  <span class="spacer"></span>
+
+  <ul class="menu">
+    <li class="item">
+      <a [routerLink]="['/home']" routerLinkActive="link-active">Inicio</a>
+    </li>
+
+    <li class="item">
+      <a [routerLink]="['/products']" routerLinkActive="link-active">Productos</a>
+    </li>
+  </ul>
+</mat-toolbar>
 <router-outlet />

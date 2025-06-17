@@ -1,0 +1,15 @@
+.section {
+  padding: 1rem;
+}
+
+.card {
+  display: flex;
+  width: 200px;
+  background: #005cbb;
+  color: white;
+  border-radius: 8px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
