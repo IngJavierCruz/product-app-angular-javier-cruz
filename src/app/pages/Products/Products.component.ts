@@ -8,11 +8,12 @@ import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-Products',
   templateUrl: './Products.component.html',
-  imports: [MatTableModule, MatPaginatorModule, MatButtonModule, MatIconModule, MatMenuModule],
+  imports: [MatTableModule, MatPaginatorModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule],
   styleUrls: ['./Products.component.scss'],
 })
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {

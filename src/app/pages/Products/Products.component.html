@@ -2,7 +2,10 @@
   <div class="header">
     <h1>Productos</h1>
     <div class="actions">
-      <button matButton="filled">Agregar</button>
+      <button matButton>
+        <mat-icon>add</mat-icon>
+        <span>Nuevo</span>
+      </button>
     </div>
   </div>
 
@@ -39,8 +42,7 @@
           <div class="table-actions">
             <button
               mat-icon-button
-              matTooltip="Editar"
-              color="primary"
+              matTooltip="Opciones"
               [matMenuTriggerData]="element"
               [matMenuTriggerFor]="menu"
             >
