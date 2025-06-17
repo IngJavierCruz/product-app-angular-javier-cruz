@@ -1,14 +1,19 @@
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { COLUMNS } from './COLUMNS';
+// MODELS
 import { Product } from '../../core/models/Product';
+// MODULES
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { ProductService } from '../../core/services/product.service';
 import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+// SERVICES
+import { ProductService } from '@services/product.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+// OTHERS
+import { COLUMNS } from './COLUMNS';
 
 @Component({
   selector: 'app-Products',
@@ -18,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   private productService = inject(ProductService);
+  private spinnerService = inject(NgxSpinnerService);
   subscription = new Subscription();
   columns: string[] = COLUMNS;
   dataSource = new MatTableDataSource<Product>([]);
@@ -44,6 +50,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 	}
 
   getProducts() {
+    this.spinnerService.show();
     this.subscription.add(
       this.productService.getAll().subscribe({
         next: (products: Product[]) => {
@@ -54,6 +61,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
         },
       })
       .add(() => {
+        this.spinnerService.hide();
         this.isFirstLoadingData = false;
       })
     );

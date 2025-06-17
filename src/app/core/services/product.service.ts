@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { environment } from '@envs/environment';
 import { Product } from '@models/Product';
 
@@ -12,7 +12,7 @@ export class ProductService {
   constructor() {}
 
   getAll() : Observable<Product[]> {
-    return this.http.get<Product[]>(this.url);
+    return this.http.get<Product[]>(this.url).pipe(delay(1000));
   }
 
   getById(id: number): Observable<Product> {
