@@ -15,6 +15,7 @@ export class App implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.productService.getAll().subscribe(x => console.log(x))
+    this.productService.getAll()
+    .subscribe(x => console.log(x))
   }
 }

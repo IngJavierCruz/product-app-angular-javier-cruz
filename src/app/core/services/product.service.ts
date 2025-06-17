@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Product } from '../models/Product';
 const host = 'https://fakestoreapi.com';
 
 @Injectable({ providedIn: 'root' })
@@ -9,21 +11,21 @@ export class ProductService {
 
   constructor() {}
 
-  getAll() {
-    return this.http.get(this.url);
+  getAll() : Observable<Product[]> {
+    return this.http.get<Product[]>(this.url);
   }
 
-  getById(id: number) {
-    return this.http.get(`${this.url}/${id}`);
+  getById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.url}/${id}`);
   }
 
-  add(product: any) {
-    return this.http.post(this.url, product);
+  add(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.url, product);
   }
 
-  update(product: any) {
+  update(product: Product): Observable<Product> {
     const url = `${this.url}/${product.id}`;
-    return this.http.put(url, product);
+    return this.http.put<Product>(url, product);
   }
 
   remove(id: number) {
