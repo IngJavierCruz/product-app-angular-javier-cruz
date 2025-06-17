@@ -1,0 +1,20 @@
+.mat-mdc-row:hover .mat-mdc-cell {
+	cursor: pointer;
+	background: #b4b4b433 !important;
+}
+
+table {
+	width: 100%;
+}
+.example-container {
+	height: 400px;
+	overflow: auto;
+}
+
+@media (min-height: 630px) {
+	.example-container {
+		height: auto;
+		max-height: 700px;
+		overflow: auto;
+	}
+}

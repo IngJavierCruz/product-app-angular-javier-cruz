@@ -1,15 +1,18 @@
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { COLUMNS } from './Config';
+import { COLUMNS } from './COLUMNS';
 import { Product } from '../../core/models/Product';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ProductService } from '../../core/services/product.service';
 import { Subscription } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-Products',
   templateUrl: './Products.component.html',
-  imports: [MatTableModule, MatPaginatorModule],
+  imports: [MatTableModule, MatPaginatorModule, MatButtonModule, MatIconModule, MatMenuModule],
   styleUrls: ['./Products.component.scss'],
 })
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -22,7 +25,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor() {}
 
   ngOnInit() {
-    // this.getProducts();
+    this.getProducts();
   }
 
   ngAfterViewInit() {
@@ -45,4 +48,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
       })
     );
   }
+
+  editProduct(product: Product){}
+  removeProduct(product: Product){}
 }
