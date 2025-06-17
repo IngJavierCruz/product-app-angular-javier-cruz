@@ -22,11 +22,13 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   columns: string[] = COLUMNS;
   dataSource = new MatTableDataSource<Product>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+	isFirstLoadingData = true;
+
 
   constructor() {}
 
   ngOnInit() {
-    // this.getProducts();
+    this.getProducts();
   }
 
   ngAfterViewInit() {
@@ -37,6 +39,10 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  showMessageEmpty() {
+		return !this.isFirstLoadingData && this.dataSource.data.length === 0;
+	}
+
   getProducts() {
     this.subscription.add(
       this.productService.getAll().subscribe({
@@ -46,6 +52,9 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
         error: (e: any) => {
           console.error(e);
         },
+      })
+      .add(() => {
+        this.isFirstLoadingData = false;
       })
     );
   }

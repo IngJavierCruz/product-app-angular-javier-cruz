@@ -9,6 +9,7 @@
     </div>
   </div>
 
+  @if(!showMessageEmpty()) {
   <div class="container-table">
     <table mat-table [dataSource]="dataSource" class="table-material">
       <ng-container matColumnDef="id">
@@ -68,6 +69,13 @@
       <tr mat-row *matRowDef="let row; columns: columns"></tr>
     </table>
   </div>
+  } @else {
+  <hr />
+  <div class="content_empty">
+    <mat-icon class="icon">manage_search</mat-icon>
+    <p>Sin registros</p>
+  </div>
+  }
 
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]">
   </mat-paginator>
