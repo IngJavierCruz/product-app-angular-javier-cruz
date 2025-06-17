@@ -11,6 +11,55 @@ export class SweetAlertService {
 	constructor() {
 	}
 
+	showInfo(text:string) {
+    Swal.fire({
+      text: text,
+      icon: 'info',
+      position: 'center',
+      showConfirmButton: true,
+      confirmButtonColor: this.primaryColor,
+    });
+  }
+
+  showSmallInfo(text: string) {
+    Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+    }).fire({
+      icon: 'info',
+      text: text,
+      confirmButtonColor: this.primaryColor,
+    });
+  }
+
+  showSuccess(text:string, timer = 1500) {
+    Swal.fire({
+      text: text,
+      position: 'center',
+      icon: 'success',
+      showConfirmButton: true,
+      confirmButtonColor: this.primaryColor,
+      timer
+    });
+  }
+
+  showSmallSuccess(text: string){
+    Swal.mixin({
+      toast: true,
+      position: 'top-right',
+      showConfirmButton: false,
+      timer: 1800,
+      timerProgressBar: true,
+    }).fire({
+      icon: 'success',
+      text: text,
+      confirmButtonColor: this.primaryColor,
+    });
+  }
+
 	showError(message? : string) {
     Swal.fire({
       text: message || 'Error de servidor',

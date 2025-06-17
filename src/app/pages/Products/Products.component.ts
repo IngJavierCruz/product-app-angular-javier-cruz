@@ -70,5 +70,33 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   editProduct(product: Product){}
-  removeProduct(product: Product){}
+
+  async confirmRemoveProduct(product: Product) {
+    const firstNameProduct = product.title.split(' ')[0];
+    const text = `¿Eliminar el producto ${firstNameProduct}?`;
+    if (await this.alertService.showDeleteConfirmationAlert({text})) {
+      this.removeProduct(product);
+    }
+  }
+
+  removeProduct(product: Product) {
+    this.spinnerService.show();
+    this.subscription.add(
+      this.productService.remove(product.id!)
+      .subscribe({
+        next: () => {
+          this.alertService.showSuccess('Producto eliminado')
+          const newData = this.dataSource.data.filter(x => x.id !== product.id!);
+          this.dataSource.data = newData;
+        },
+        error: (e: any) => {
+          console.error(e);
+          this.alertService.showError(e.message)
+        },
+      })
+      .add(() => {
+        this.spinnerService.hide();
+      })
+    );
+  }
 }
