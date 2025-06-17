@@ -14,6 +14,7 @@ import { ProductService } from '@services/product.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 // OTHERS
 import { COLUMNS } from './COLUMNS';
+import { SweetAlertService } from '@services/sweet-alert.service';
 
 @Component({
   selector: 'app-Products',
@@ -24,12 +25,12 @@ import { COLUMNS } from './COLUMNS';
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   private productService = inject(ProductService);
   private spinnerService = inject(NgxSpinnerService);
+  private alertService = inject(SweetAlertService);
   subscription = new Subscription();
   columns: string[] = COLUMNS;
   dataSource = new MatTableDataSource<Product>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 	isFirstLoadingData = true;
-
 
   constructor() {}
 
@@ -58,6 +59,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
         },
         error: (e: any) => {
           console.error(e);
+          this.alertService.showError(e.message)
         },
       })
       .add(() => {
