@@ -44,18 +44,24 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
 ## Deploy production
 
 To deploy the project run:
 
 ```bash
 ng deploy
+```
+
+## Deploy development
+
+To deploy the project run:
+
+```bash
+npm run deploy:dev or ng deploy --build-target=product-app-angular-javier-cruz:build:development
+```
+
+## Link page
+
+```bash
+https://ingjaviercruz.github.io/product-app-angular-javier-cruz
 ```
