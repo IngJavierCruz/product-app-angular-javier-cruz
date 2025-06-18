@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/pages/Products/Product/Product.component.scss"],
-  "sourcesContent": [".form {\r\n  display: flex;\r\n  flex-direction: column;\r\n  row-gap: 1rem;\r\n}\r\n\r\n.row {\r\n  display: grid;\r\n  grid-template-columns: 1fr 1fr;\r\n  column-gap: 1rem;\r\n}\r\n\r\n.row_single {\r\n  display: flex;\r\n  width: 100%;\r\n  & > .form-field {\r\n    width: 100% !important;\r\n  }\r\n}"],
-  "mappings": ";AAAA,CAAA;AACE,WAAA;AACA,kBAAA;AACA,WAAA;;AAGF,CAAA;AACE,WAAA;AACA,yBAAA,IAAA;AACA,cAAA;;AAGF,CAAA;AACE,WAAA;AACA,SAAA;;AACA,CAHF,WAGE,EAAA,CAAA;AACE,SAAA;;",
-  "names": []
-}
