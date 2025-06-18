@@ -34,8 +34,6 @@
           },
           "configurations": {
             "production": {
-              "outputPath": "docs",
-              "baseHref": "/product-app-angular-javier-cruz/",
               "budgets": [
                 {
                   "type": "initial",
