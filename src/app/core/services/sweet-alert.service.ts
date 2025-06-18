@@ -106,4 +106,16 @@ export class SweetAlertService {
 
 		return result.isConfirmed;
 	}
+
+  showAlertWarning(text: string) {
+    Swal.fire({
+      title: "Advertencia",
+      text: text,
+      position: "center",
+      icon: "warning",
+      showConfirmButton: true,
+			confirmButtonColor: this.primaryColor,
+      timer: 1750,
+    });
+  }
 }

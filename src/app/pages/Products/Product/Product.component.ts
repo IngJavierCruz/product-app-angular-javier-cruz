@@ -56,7 +56,6 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.data && this.loadData();
   }
 
@@ -92,7 +91,7 @@ export class ProductComponent implements OnInit, OnDestroy {
         this.createProduct();
       }
     } else {
-      // this.alertService.showAlertWarning('Completa los campos requeridos');
+      this.alertService.showAlertWarning('Completa los campos requeridos');
     }
   }
 

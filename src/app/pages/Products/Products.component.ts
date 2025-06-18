@@ -82,7 +82,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     dialogRef.afterClosed()
     .subscribe((newProduct: Product) => {
-      debugger
       if (newProduct && product) {
         const dataSource = this.dataSource.data.map(x => x.id! === product.id! ? newProduct : x);
         this.dataSource.data = dataSource;
