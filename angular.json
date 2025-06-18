@@ -17,6 +17,8 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "docs",
+            "baseHref": "/product-app-angular-javier-cruz/",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -34,6 +36,8 @@
           },
           "configurations": {
             "production": {
+              "outputPath": "docs",
+              "baseHref": "/product-app-angular-javier-cruz/",
               "budgets": [
                 {
                   "type": "initial",
@@ -49,6 +53,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "baseHref": "/",
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
