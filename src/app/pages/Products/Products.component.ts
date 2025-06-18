@@ -1,5 +1,13 @@
-import { AfterViewInit, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { NgOptimizedImage } from '@angular/common';
 // MODULES
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
@@ -21,7 +29,15 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-Products',
   templateUrl: './Products.component.html',
-  imports: [MatTableModule, MatPaginatorModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule],
+  imports: [
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatTooltipModule,
+    NgOptimizedImage,
+  ],
   styleUrls: ['./Products.component.scss'],
 })
 export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -33,7 +49,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   columns: string[] = COLUMNS;
   dataSource = new MatTableDataSource<Product>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-	isFirstLoadingData = true;
+  isFirstLoadingData = true;
 
   constructor() {}
 
@@ -50,43 +66,46 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   showMessageEmpty() {
-		return !this.isFirstLoadingData && this.dataSource.data.length === 0;
-	}
+    return !this.isFirstLoadingData && this.dataSource.data.length === 0;
+  }
 
   getProducts() {
     this.spinnerService.show();
     this.subscription.add(
-      this.productService.getAll().subscribe({
-        next: (products: Product[]) => {
-          this.dataSource.data = products;
-        },
-        error: (e: any) => {
-          console.error(e);
-          this.alertService.showError(e.message)
-        },
-      })
-      .add(() => {
-        this.spinnerService.hide();
-        this.isFirstLoadingData = false;
-      })
+      this.productService
+        .getAll()
+        .subscribe({
+          next: (products: Product[]) => {
+            this.dataSource.data = products;
+          },
+          error: (e: any) => {
+            console.error(e);
+            this.alertService.showError(e.message);
+          },
+        })
+        .add(() => {
+          this.spinnerService.hide();
+          this.isFirstLoadingData = false;
+        })
     );
   }
 
   openDialogProduct(product?: Product) {
     const dialogRef = this.dialog.open(ProductComponent, {
       width: '800px',
-      panelClass: ["template-dialog"],
-      backdropClass: "template-backdrop-dialog",
+      panelClass: ['template-dialog'],
+      backdropClass: 'template-backdrop-dialog',
       autoFocus: false,
-      data: product
+      data: product,
     });
-    dialogRef.afterClosed()
-    .subscribe((newProduct: Product) => {
+    dialogRef.afterClosed().subscribe((newProduct: Product) => {
       if (newProduct && product) {
-        const dataSource = this.dataSource.data.map(x => x.id! === product.id! ? newProduct : x);
+        const dataSource = this.dataSource.data.map((x) =>
+          x.id! === product.id! ? newProduct : x
+        );
         this.dataSource.data = dataSource;
       } else if (newProduct) {
-        this.dataSource.data.push(newProduct)
+        this.dataSource.data.push(newProduct);
       }
     });
   }
@@ -102,7 +121,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   async confirmRemoveProduct(product: Product) {
     const firstNameProduct = product.title.split(' ')[0];
     const text = `¿Eliminar el producto ${firstNameProduct}?`;
-    if (await this.alertService.showDeleteConfirmationAlert({text})) {
+    if (await this.alertService.showDeleteConfirmationAlert({ text })) {
       this.removeProduct(product);
     }
   }
@@ -110,21 +129,24 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   removeProduct(product: Product) {
     this.spinnerService.show();
     this.subscription.add(
-      this.productService.remove(product.id!)
-      .subscribe({
-        next: () => {
-          this.alertService.showSuccess('Producto eliminado')
-          const newData = this.dataSource.data.filter(x => x.id !== product.id!);
-          this.dataSource.data = newData;
-        },
-        error: (e: any) => {
-          console.error(e);
-          this.alertService.showError(e.message)
-        },
-      })
-      .add(() => {
-        this.spinnerService.hide();
-      })
+      this.productService
+        .remove(product.id!)
+        .subscribe({
+          next: () => {
+            this.alertService.showSuccess('Producto eliminado');
+            const newData = this.dataSource.data.filter(
+              (x) => x.id !== product.id!
+            );
+            this.dataSource.data = newData;
+          },
+          error: (e: any) => {
+            console.error(e);
+            this.alertService.showError(e.message);
+          },
+        })
+        .add(() => {
+          this.spinnerService.hide();
+        })
     );
   }
 }

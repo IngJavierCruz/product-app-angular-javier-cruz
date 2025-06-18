@@ -12,6 +12,15 @@
   @if(!showMessageEmpty()) {
   <div class="container-table">
     <table mat-table [dataSource]="dataSource" class="table-material">
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>Imagen</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="box_image">
+            <img [ngSrc]="element.image" alt="imagen"  fill>
+          </div>
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>Id.</th>
         <td mat-cell *matCellDef="let element">{{ element.id }}</td>
@@ -30,11 +39,6 @@
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef>Categoria</th>
         <td mat-cell *matCellDef="let element">{{ element.category }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="image">
-        <th mat-header-cell *matHeaderCellDef>Imagen</th>
-        <td mat-cell *matCellDef="let element">{{ element.image }}</td>
       </ng-container>
 
       <ng-container matColumnDef="action">
