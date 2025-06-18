@@ -105,7 +105,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
         );
         this.dataSource.data = dataSource;
       } else if (newProduct) {
-        this.dataSource.data.push(newProduct);
+        this.dataSource.data = [newProduct, ...this.dataSource.data];
       }
     });
   }
