@@ -1,0 +1,71 @@
+<button matIconButton class="mat-dialog-close close" (click)="closeDialog()">
+  <mat-icon>close</mat-icon>
+</button>
+
+<h2 mat-dialog-title class="title">Producto</h2>
+
+<mat-dialog-content class="dialog-content">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <div class="row_single">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Titulo</mat-label>
+        <input matInput placeholder="Titulo" formControlName="title" />
+        @if(form.get('title')?.hasError('required')) {
+        <mat-error>Ingresar el titulo de producto.</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Precio</mat-label>
+        <input matInput type="number" placeholder="Precio" formControlName="price" />
+        @if(form.get('price')?.hasError('required')) {
+        <mat-error>Ingresar el precio de producto.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <input matInput placeholder="Categoria" formControlName="category" />
+        @if(form.get('category')?.hasError('required')) {
+        <mat-error>Ingresar la categoría del producto.</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="row_single">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Url imagen</mat-label>
+        <input matInput placeholder="Imagen Url" formControlName="image" />
+        @if(form.get('image')?.hasError('required')) {
+        <mat-error>Ingresar la url de la imagen del producto.</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="row_single">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <textarea
+          rows="5"
+          matInput
+          placeholder="Descripción"
+          formControlName="description"
+        ></textarea>
+        @if(form.get('description')?.hasError('required')) {
+        <mat-error>Ingresar la descripción del producto.</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="actions">
+    <button type="button" matButton (click)="closeDialog()">Cancelar</button>
+
+    <button type="submit" matButton="filled">
+      Guardar
+    </button>
+  </div>
+</mat-dialog-actions>

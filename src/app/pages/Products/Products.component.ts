@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-// MODELS
-import { Product } from '../../core/models/Product';
 // MODULES
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
@@ -12,9 +10,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 // SERVICES
 import { ProductService } from '@services/product.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+// MODELS
+import { Product } from '@models/Product';
 // OTHERS
 import { COLUMNS } from './COLUMNS';
 import { SweetAlertService } from '@services/sweet-alert.service';
+import { ProductComponent } from './Product/Product.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-Products',
@@ -26,6 +28,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   private productService = inject(ProductService);
   private spinnerService = inject(NgxSpinnerService);
   private alertService = inject(SweetAlertService);
+  private dialog = inject(MatDialog);
   subscription = new Subscription();
   columns: string[] = COLUMNS;
   dataSource = new MatTableDataSource<Product>([]);
@@ -69,7 +72,26 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  editProduct(product: Product){}
+  openDialogProduct(product?: Product) {
+    const dialogRef = this.dialog.open(ProductComponent, {
+      width: '800px',
+      panelClass: ["template-dialog"],
+      backdropClass: "template-backdrop-dialog",
+      autoFocus: false,
+      data: product
+    });
+    dialogRef.afterClosed().subscribe(x => {
+      console.log(`Dialog result: ${x}`); // Pizza!
+    });
+  }
+
+  newProduct() {
+    this.openDialogProduct();
+  }
+
+  editProduct(product: Product) {
+    this.openDialogProduct(product);
+  }
 
   async confirmRemoveProduct(product: Product) {
     const firstNameProduct = product.title.split(' ')[0];

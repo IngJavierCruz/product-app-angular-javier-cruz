@@ -2,3 +2,50 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.wrapper-dialog {
+  position: relative;
+  & .dialog-content {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  & .mat-dialog-title.title, .subtitle, .control-label {
+    color: white !important;
+  }
+
+  & .title {
+    margin-bottom: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  & .mat-dialog-close {
+    position: absolute;
+    right: 6px;
+    top: 0;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 300;
+    z-index: 2;
+  }
+
+  & .actions {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 0.5rem;
+    width: 100%;
+  }
+}
+
+.template-dialog .mat-dialog-container {
+  background-color: #252a2d;
+  box-shadow: none;
+}
+
+.template-backdrop-dialog {
+  background-color: rgba(black, 0.5);
+}
