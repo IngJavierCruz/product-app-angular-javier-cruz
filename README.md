@@ -57,7 +57,11 @@ ng deploy
 To deploy the project run:
 
 ```bash
-npm run deploy:dev or ng deploy --build-target=product-app-angular-javier-cruz:build:development
+npm run deploy:dev
+```
+
+```bash
+ng deploy --build-target=product-app-angular-javier-cruz:build:development
 ```
 
 ## Link page
