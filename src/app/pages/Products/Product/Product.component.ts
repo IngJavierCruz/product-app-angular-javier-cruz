@@ -66,7 +66,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.form = new FormGroup({
-      id: new FormControl(''),
+      id: new FormControl(null),
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required, Validators.min(0)]),
@@ -79,20 +79,62 @@ export class ProductComponent implements OnInit, OnDestroy {
     this.form.patchValue(this.data);
   }
 
-  closeDialog() {
-    this.dialogRef.close({ success: false });
+  closeDialog(product?: Product) {
+    this.dialogRef.close(product);
   }
 
   onSubmit(event: Event) {
     event.preventDefault();
     if (this.form.valid) {
       if (this.data) {
-
+        this.updateProduct();
       } else {
-
+        this.createProduct();
       }
     } else {
       // this.alertService.showAlertWarning('Completa los campos requeridos');
     }
+  }
+
+  createProduct() {
+    const data = this.form.getRawValue();
+    this.spinnerService.show();
+    this.subscription.add(
+      this.productService.add(data)
+      .subscribe({
+        next: (product: Product) => {
+          this.alertService.showSuccess('Producto creado');
+          this.closeDialog(product);
+        },
+        error: (e: any) => {
+          console.error(e);
+          this.alertService.showError(e.message)
+        },
+      })
+      .add(() => {
+        this.spinnerService.hide();
+      })
+    );
+  }
+
+  updateProduct() {
+    const data = this.form.getRawValue();
+    this.spinnerService.show();
+    this.subscription.add(
+      this.productService.update(data)
+      .subscribe({
+        next: (product: Product) => {
+          this.alertService.showSuccess('Producto actualizado');
+          this.closeDialog(product);
+        },
+        error: (e: any) => {
+          console.error(e);
+          this.alertService.showError(e.message)
+        },
+      })
+      .add(() => {
+        this.spinnerService.hide();
+      })
+    );
   }
 }

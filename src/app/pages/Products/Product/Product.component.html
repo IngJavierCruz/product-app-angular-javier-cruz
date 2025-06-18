@@ -5,7 +5,7 @@
 <h2 mat-dialog-title class="title">Producto</h2>
 
 <mat-dialog-content class="dialog-content">
-  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <form id="formProduct" class="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <div class="row_single">
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>Titulo</mat-label>
@@ -64,7 +64,7 @@
   <div class="actions">
     <button type="button" matButton (click)="closeDialog()">Cancelar</button>
 
-    <button type="submit" matButton="filled">
+    <button type="submit" form="formProduct" matButton="filled">
       Guardar
     </button>
   </div>
