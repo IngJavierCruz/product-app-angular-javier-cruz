@@ -45770,8 +45770,7 @@ var transformMenu = matMenuAnimations.transformMenu;
 
 // src/environments/environment.ts
 var environment = {
-  API_URL: "https://fakestoreapi.com",
-  ENV: "Runnig development"
+  API_URL: "https://fakestoreapi.com"
 };
 
 // src/app/core/services/product.service.ts
@@ -50544,9 +50543,6 @@ var _c015 = () => ["/home"];
 var _c112 = () => ["/products"];
 var App = class _App {
   title = "product-app-angular-javier-cruz";
-  constructor() {
-    console.log(environment.ENV);
-  }
   static \u0275fac = function App_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _App)();
   };
@@ -50618,10 +50614,10 @@ var App = class _App {
   [fullScreen]="true">\r
 </ngx-spinner>\r
 `, styles: ["/* src/app/app.scss */\n.toolbar {\n  background-color: #f2f2f2;\n}\n.spacer {\n  flex: 1 1 auto;\n}\n.menu {\n  display: flex;\n  padding: 0 1rem;\n  column-gap: 1rem;\n}\n.menu .item {\n  list-style: none;\n}\n.menu .item > a {\n  text-decoration: none;\n  color: #6c6c6c;\n  font-size: 16px;\n}\n.link-active {\n  color: #005cbb !important;\n}\n/*# sourceMappingURL=app.css.map */\n"] }]
-  }], () => [], null);
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 21 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(App, { className: "App", filePath: "src/app/app.ts", lineNumber: 19 });
 })();
 
 // src/main.ts
